@@ -4,6 +4,7 @@ import java.io.FileReader;
 public class SudokuBoard {
     private int[][] board;
     private static final String filename = "src/sudoku.csv";
+    //private static final String filename = "src/invalid_sudoku.csv";
 
     public SudokuBoard() {
         int[][] array = new int[9][9];
@@ -27,14 +28,5 @@ public class SudokuBoard {
 
     public int[][] getBoard() {
         return board;
-    }
-
-    public void printBoard() {
-        for (int i = 0; i < 9; i++) {
-            for(int j = 0; j < 9; j++) {
-                System.out.print(board[i][j]+" ");
-            }
-            System.out.println();
-        }
     }
 }

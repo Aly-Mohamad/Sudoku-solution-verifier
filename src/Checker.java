@@ -12,7 +12,7 @@ public abstract class Checker implements Runnable {
 
     public List<String> getErrors() {
         if (errors == null) {
-            return Collections.emptyList(); // or new ArrayList<>()
+            return Collections.emptyList();
         }
         return errors;
     }

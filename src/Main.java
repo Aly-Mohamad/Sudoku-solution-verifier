@@ -6,12 +6,12 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         SudokuBoard board = new SudokuBoard();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Choose the mode to check the sudoku. 0/3/27: ");
+        System.out.print("Choose the mode to check the sudoku. 0/3/27: ");
         int mode = Integer.parseInt(scanner.next());
 
         while(mode !=0 && mode != 3 && mode != 27){
             System.out.println("You entered an invalid mode.Try again.");
-            System.out.println("Choose the mode to check the sudoku. 0/3/27");
+            System.out.print("Choose the mode to check the sudoku. 0/3/27: ");
             mode = Integer.parseInt(scanner.next());
         }
         List<String> allErrors = new ArrayList<>();
@@ -30,6 +30,7 @@ public class Main {
                 allErrors.addAll(colChecker.getErrors());
                 allErrors.addAll(boxChecker.getErrors());
                 break;
+
             case 3:
                 RowChecker rowChecker3 = new RowChecker(board.getBoard());
                 ColumnChecker colChecker3 = new ColumnChecker(board.getBoard());
@@ -50,27 +51,24 @@ public class Main {
                 allErrors.addAll(rowChecker3.getErrors());
                 allErrors.addAll(colChecker3.getErrors());
                 allErrors.addAll(boxChecker3.getErrors());
-
                 break;
+
             case 27:
                 List<Thread> threads= new ArrayList<>();
                 List<Checker> checkers = new ArrayList<>();
 
-                // row checkers
                 for(int i = 0;i<9;i++){
                     Checker r = new SingleRowChecker(board.getBoard(),i);
                     checkers.add(r);
                     threads.add(new Thread(r));
                 }
 
-                // column checkers
                 for(int i = 0;i<9;i++){
                     Checker c = new SingleColumnChecker(board.getBoard(),i);
                     checkers.add(c);
                     threads.add(new Thread(c));
                 }
 
-                //box checkers
                 for(int i = 0;i<9;i++){
                 Checker b = new SingleBoxChecker(board.getBoard(),i);
                 checkers.add(b);
@@ -87,7 +85,6 @@ public class Main {
                 for(Checker ch :checkers){
                     allErrors.addAll(ch.getErrors());
                 }
-
                 break;
         }
 

@@ -1,22 +1,39 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class BoxChecker extends Checker {
+
     public BoxChecker(int[][] board) {
         super(board);
     }
 
     @Override
     public void run() {
-        for (int boxRow = 0; boxRow < 3; boxRow++) {
-            for (int boxCol = 0; boxCol < 3; boxCol++) {
-                boolean[] seen = new boolean[10];
-                for (int i = 0; i < 3; i++) {
-                    for (int j = 0; j < 3; j++) {
-                        int num = board[boxRow * 3 + i][boxCol * 3 + j];
-                        if (num < 1 || num > 9) continue;
-                        if (seen[num]) {
-                            errors.add("Duplicate " + num + " in box (" + (boxRow+1) + "," + (boxCol+1) + ")");
-                        }
-                        seen[num] = true;
-                    }
+        for (int box = 0; box < 9; box++) {
+            List<String>[] positions = new List[10];
+
+            for (int n = 1; n <= 9; n++) {
+                positions[n] = new ArrayList<>();
+            }
+
+            int startRow = (box / 3) * 3;
+            int startCol = (box % 3) * 3;
+
+            for (int pos = 0; pos < 9; pos++) {
+                int r = pos / 3;
+                int c = pos % 3;
+                int row = startRow + r;
+                int col = startCol + c;
+                int num = board[row][col];
+                if (num >= 1 && num <= 9) {
+                    positions[num].add(String.valueOf(pos + 1));
+                }
+            }
+
+            for (int num = 1; num <= 9; num++) {
+                if (positions[num].size() > 1) {
+                    String entry = "BOX " + (box + 1) + ", #" + num + ", " + positions[num];
+                    errors.add(entry);
                 }
             }
         }

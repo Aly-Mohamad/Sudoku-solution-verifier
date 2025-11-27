@@ -1,19 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class ColumnChecker extends Checker {
+
     public ColumnChecker(int[][] board) {
         super(board);
     }
 
     @Override
     public void run() {
-        for (int j = 0; j < 9; j++) {
-            boolean[] seen = new boolean[10];
-            for (int i = 0; i < 9; i++) {
-                int num = board[i][j];
-                if (num < 1 || num > 9) continue;
-                if (seen[num]) {
-                    errors.add("Duplicate " + num + " in column " + (j+1));
+        for (int col = 0; col < 9; col++) {
+            List<Integer>[] positions = new List[10];
+
+            for (int n = 1; n <= 9; n++) {
+                positions[n] = new ArrayList<>();
+            }
+
+            for (int row = 0; row < 9; row++) {
+                int num = board[row][col];
+                if (num >= 1 && num <= 9) {
+                    positions[num].add(row + 1);
                 }
-                seen[num] = true;
+            }
+
+            for (int num = 1; num <= 9; num++) {
+                if (positions[num].size() > 1) {
+                    String entry = "COL " + (col + 1) + ", #" + num + ", " + positions[num];
+                    errors.add(entry);
+                }
             }
         }
     }
