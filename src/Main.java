@@ -18,9 +18,10 @@ public class Main {
 
         switch (mode){
             case 0:
-                RowChecker rowChecker = new RowChecker(board.getBoard());
-                ColumnChecker colChecker = new ColumnChecker(board.getBoard());
-                BoxChecker boxChecker = new BoxChecker(board.getBoard());
+                Checker rowChecker = CheckerFactory.createChecker("row", board.getBoard(), -1);
+                Checker colChecker = CheckerFactory.createChecker("column", board.getBoard(), -1);
+                Checker boxChecker = CheckerFactory.createChecker("box", board.getBoard(), -1);
+
 
                 rowChecker.run();
                 colChecker.run();
@@ -32,9 +33,10 @@ public class Main {
                 break;
 
             case 3:
-                RowChecker rowChecker3 = new RowChecker(board.getBoard());
-                ColumnChecker colChecker3 = new ColumnChecker(board.getBoard());
-                BoxChecker boxChecker3 = new BoxChecker(board.getBoard());
+                Checker rowChecker3 = CheckerFactory.createChecker("row", board.getBoard(), -1);
+                Checker colChecker3 = CheckerFactory.createChecker("column", board.getBoard(), -1);
+                Checker boxChecker3 = CheckerFactory.createChecker("box", board.getBoard(), -1);
+
 
                 Thread rowThread = new Thread(rowChecker3);
                 Thread colThread = new Thread(colChecker3);
@@ -57,23 +59,24 @@ public class Main {
                 List<Thread> threads= new ArrayList<>();
                 List<Checker> checkers = new ArrayList<>();
 
-                for(int i = 0;i<9;i++){
-                    Checker r = new SingleRowChecker(board.getBoard(),i);
+                for (int i = 0; i < 9; i++) {
+                    Checker r = CheckerFactory.createChecker("single_row", board.getBoard(), i);
                     checkers.add(r);
                     threads.add(new Thread(r));
                 }
 
-                for(int i = 0;i<9;i++){
-                    Checker c = new SingleColumnChecker(board.getBoard(),i);
+                for (int i = 0; i < 9; i++) {
+                    Checker c = CheckerFactory.createChecker("single_column", board.getBoard(), i);
                     checkers.add(c);
                     threads.add(new Thread(c));
                 }
 
-                for(int i = 0;i<9;i++){
-                Checker b = new SingleBoxChecker(board.getBoard(),i);
-                checkers.add(b);
-                threads.add(new Thread(b));
+                for (int i = 0; i < 9; i++) {
+                    Checker b = CheckerFactory.createChecker("single_box", board.getBoard(), i);
+                    checkers.add(b);
+                    threads.add(new Thread(b));
                 }
+
 
                 for(Thread t: threads){
                     t.start();

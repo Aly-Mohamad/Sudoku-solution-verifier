@@ -3,7 +3,7 @@ import java.io.FileReader;
 
 public class SudokuBoard {
     private int[][] board;
-    private static final String filename = "src/sudoku.csv";
+    private static final String filename = "src/invalid_sudoku.csv";
     //private static final String filename = "src/invalid_sudoku.csv";
 
     public SudokuBoard() {
