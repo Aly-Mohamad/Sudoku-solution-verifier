@@ -1,27 +1,23 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        SudokuBoard board = new SudokuBoard();
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Choose the mode to check the sudoku. 0/3/27: ");
-        int mode = Integer.parseInt(scanner.next());
-
-        while(mode !=0 && mode != 3 && mode != 27){
-            System.out.println("You entered an invalid mode.Try again.");
-            System.out.print("Choose the mode to check the sudoku. 0/3/27: ");
-            mode = Integer.parseInt(scanner.next());
+        if (args.length < 2) {
+            System.out.println("Usage: java -jar Sudoku.jar <csv filepath> <mode>");
+            return;
         }
+
+        String csvPath = args[0];
+        int mode = Integer.parseInt(args[1]);
+
+        SudokuBoard board = new SudokuBoard(csvPath);
         List<String> allErrors = new ArrayList<>();
 
-        switch (mode){
+        switch (mode) {
             case 0:
                 Checker rowChecker = CheckerFactory.createChecker("row", board.getBoard(), -1);
                 Checker colChecker = CheckerFactory.createChecker("column", board.getBoard(), -1);
                 Checker boxChecker = CheckerFactory.createChecker("box", board.getBoard(), -1);
-
 
                 rowChecker.run();
                 colChecker.run();
@@ -36,7 +32,6 @@ public class Main {
                 Checker rowChecker3 = CheckerFactory.createChecker("row", board.getBoard(), -1);
                 Checker colChecker3 = CheckerFactory.createChecker("column", board.getBoard(), -1);
                 Checker boxChecker3 = CheckerFactory.createChecker("box", board.getBoard(), -1);
-
 
                 Thread rowThread = new Thread(rowChecker3);
                 Thread colThread = new Thread(colChecker3);
@@ -56,7 +51,7 @@ public class Main {
                 break;
 
             case 27:
-                List<Thread> threads= new ArrayList<>();
+                List<Thread> threads = new ArrayList<>();
                 List<Checker> checkers = new ArrayList<>();
 
                 for (int i = 0; i < 9; i++) {
@@ -77,18 +72,21 @@ public class Main {
                     threads.add(new Thread(b));
                 }
 
-
-                for(Thread t: threads){
+                for (Thread t : threads) {
                     t.start();
                 }
-                for(Thread t : threads){
+                for (Thread t : threads) {
                     t.join();
                 }
 
-                for(Checker ch :checkers){
+                for (Checker ch : checkers) {
                     allErrors.addAll(ch.getErrors());
                 }
                 break;
+
+            default:
+                System.out.println("Invalid mode. Use 0, 3, or 27.");
+                return;
         }
 
         if (allErrors.isEmpty()) {

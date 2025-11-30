@@ -3,12 +3,9 @@ import java.io.FileReader;
 
 public class SudokuBoard {
     private int[][] board;
-    private static final String filename = "src/invalid_sudoku.csv";
-    //private static final String filename = "src/invalid_sudoku.csv";
 
-    public SudokuBoard() {
+    public SudokuBoard(String filename) {
         int[][] array = new int[9][9];
-
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             int i = 0;
