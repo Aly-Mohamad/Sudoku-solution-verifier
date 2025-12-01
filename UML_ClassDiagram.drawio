@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.2.1">
+  <diagram name="Page-1" id="pnyKcMEDou9cIQiTer5b">
+    <mxGraphModel dx="924" dy="597" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Checker" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&lt;b&gt;Checker&lt;/b&gt;&lt;/i&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;# board: int[][]&lt;br&gt;# errors: List&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ Checker(board: int[][])&lt;br&gt;+ getErrors(): List&amp;lt;String&amp;gt;&lt;br&gt;+ &lt;i&gt;run(): void&lt;/i&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="130" width="200" x="360" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Runnable" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;&lt;interface&gt;&gt;&#xa;Runnable" vertex="1">
+          <mxGeometry height="80" width="100" x="640" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="Imp_Runnable" edge="1" parent="1" source="Checker" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Runnable">
+          <mxGeometry relative="1" width="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Factory" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" value="&lt;b&gt;CheckerFactory&lt;/b&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ createChecker(type, board, index): Checker&lt;/p&gt;" vertex="1">
+          <mxGeometry height="70" width="280" x="40" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Link_Factory" edge="1" parent="1" source="Factory" style="endArrow=open;dashed=1;endSize=12;html=1;exitX=1;exitY=0.5;entryX=0.015;entryY=0.431;entryDx=0;entryDy=0;entryPerimeter=0;" target="Checker">
+          <mxGeometry relative="1" width="160" as="geometry" />
+        </mxCell>
+        <mxCell id="RowChecker" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" value="&lt;b&gt;RowChecker&lt;/b&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;br/&gt;&lt;hr size=&quot;1&quot;/&gt;+ run(): void" vertex="1">
+          <mxGeometry height="70" width="120" x="40" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="ColChecker" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" value="&lt;b&gt;ColumnChecker&lt;/b&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;br/&gt;&lt;hr size=&quot;1&quot;/&gt;+ run(): void" vertex="1">
+          <mxGeometry height="70" width="120" x="180" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="BoxChecker" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" value="&lt;b&gt;BoxChecker&lt;/b&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;br/&gt;&lt;hr size=&quot;1&quot;/&gt;+ run(): void" vertex="1">
+          <mxGeometry height="70" width="120" x="320" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="SRowChecker" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" value="&lt;b&gt;SingleRowChecker&lt;/b&gt;&lt;hr size=&quot;1&quot;/&gt;~ row: int&lt;hr size=&quot;1&quot;/&gt;+ run(): void" vertex="1">
+          <mxGeometry height="70" width="130" x="460" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="SColChecker" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" value="&lt;b&gt;SingleColumnChecker&lt;/b&gt;&lt;hr size=&quot;1&quot;/&gt;~ col: int&lt;hr size=&quot;1&quot;/&gt;+ run(): void" vertex="1">
+          <mxGeometry height="70" width="140" x="610" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="SBoxChecker" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" value="&lt;b&gt;SingleBoxChecker&lt;/b&gt;&lt;hr size=&quot;1&quot;/&gt;- box: int&lt;hr size=&quot;1&quot;/&gt;+ run(): void" vertex="1">
+          <mxGeometry height="70" width="130" x="770" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge1" edge="1" parent="1" source="RowChecker" style="endArrow=block;endSize=16;endFill=0;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" target="Checker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge2" edge="1" parent="1" source="ColChecker" style="endArrow=block;endSize=16;endFill=0;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" target="Checker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge3" edge="1" parent="1" source="BoxChecker" style="endArrow=block;endSize=16;endFill=0;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" target="Checker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge4" edge="1" parent="1" source="SRowChecker" style="endArrow=block;endSize=16;endFill=0;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" target="Checker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge5" edge="1" parent="1" source="SColChecker" style="endArrow=block;endSize=16;endFill=0;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" target="Checker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge6" edge="1" parent="1" source="SBoxChecker" style="endArrow=block;endSize=16;endFill=0;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" target="Checker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Board" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" value="&lt;b&gt;SudokuBoard&lt;/b&gt;&lt;hr size=&quot;1&quot;/&gt;- board: int[][]&lt;br/&gt;&lt;u&gt;- filename: String&lt;/u&gt;&lt;hr size=&quot;1&quot;/&gt;+ getBoard(): int[][]" vertex="1">
+          <mxGeometry height="110" width="120" x="310" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="Main" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" value="&lt;b&gt;Main&lt;/b&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;br/&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;u&gt;+ main(args: String[]): void&lt;/u&gt;" vertex="1">
+          <mxGeometry height="90" width="150" x="50" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="Main_Uses_Board" edge="1" parent="1" style="endArrow=open;dashed=1;endSize=12;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Board">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="465" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Main_Uses_Factory" edge="1" parent="1" source="Main" style="endArrow=open;dashed=1;endSize=12;html=1;exitX=0.5;exitY=0;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="Factory">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="380" />
+              <mxPoint x="20" y="380" />
+              <mxPoint x="20" y="113" />
+            </Array>
+            <mxPoint x="172" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
